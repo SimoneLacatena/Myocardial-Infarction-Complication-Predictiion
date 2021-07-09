@@ -1,0 +1,108 @@
+---
+title: "Cluster Analysis.Rmd"
+author: "Vito Simone Lacatena"
+date: "9/7/2021"
+output: html_document
+---
+```{r}
+
+set.seed(123)
+library(e1071)
+#rint(cleaned_data)
+
+cm <- cmeans(cleaned_data, 4)
+
+
+print(cm$membership[1,1])
+print(cm$membership[2,1])
+
+# results <- data.frame("SN" = 1:2, "Age" = c(21,15), "Name" = c("John","Dora"))
+```
+
+```{r}
+require(cluster)
+require(fclust)
+require(dplyr)
+require(factoextra)
+require(ppclust)
+
+```
+
+
+```{r}
+
+
+X = cleaned_data[,0:108]
+y_true = cleaned_data[,108:120]
+
+no_comp = 
+for(data_point_idx in seq(1,length(y_true$TRENT_S_n))) {
+  
+  
+}
+```
+
+```{r}
+res.clustering <- FKM.med(X, k=12)
+print('done')
+as.data.frame(res.clustering$U)
+```
+
+
+```{r}
+# clustering_a : DataFrame
+# clustering_b : DataFrame
+
+print(y_true)
+
+
+
+cluster_intersection <- function(clustering_a,clustering_b,i,j) {
+  c_pairs <- data.frame(c_i= clustering_a[,i],c_j=clustering_b[,j])
+  intersection_counts = 0
+  print(c_pairs)
+  for (data_point_idx in seq(1,length(c_pairs$c_i))) {
+    #print(data_point_idx)
+    if(c_pairs$c_i[data_point_idx] == (c_pairs$c_j[data_point_idx])){
+        intersection_counts <- intersection_counts + 1
+        #print(intersection_counts)
+      }
+  }
+  
+  return(intersection_counts)
+  
+}
+tilde <- function(clustering_a,clustering_b) {
+  clustering_a <- data.matrix(clustering_a)
+  clustering_b <- data.matrix(clustering_b)
+  
+  N_data_points<- nrow(clustering_a)
+  N_clusters_a <- ncol(clustering_a)
+  N_clusters_b <- ncol(clustering_b)
+  t_value = 0
+  for (i in seq(1,N_clusters_a)){
+       for (j in seq(1,N_clusters_b)){
+         c_ij <- cluster_intersection(clustering_a,clustering_b,i,j)
+         P_ij <-  (c_ij *(c_ij -1)) / (N_data_points(N_data_points -1))
+         t_value <- t_value + P_ij
+
+       }
+  }
+  
+  
+  return(1)
+}
+
+
+r = tilde(y_true,y_true)
+
+```
+
+
+
+```{r}
+
+write.csv(as.data.frame(res.clustering$U),"./fuzzykmedoidsk=12.csv")
+#as.data.frame(res.clustering$U)
+```
+
