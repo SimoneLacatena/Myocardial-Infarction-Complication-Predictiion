@@ -1,8 +1,4 @@
----
-output:
-  word_document: default
-  html_document: default
----
+
 # Myocardial Infarction-Complication Analysis
 
 -----------------------------------------------------------------------------
@@ -32,9 +28,6 @@ complicanze che non peggiorano la prognosi a lungo termine. Allo stesso tempo, c
 Il dataset utilizzato è il **Myocardial infarction complications Data Set** reperibile nella repository https://archive.ics.uci.edu/ml/datasets/Myocardial+infarction+complications
 
 <h4> Informazioni Generali</h4>
-
-
-
 
 
 **Sito in cui sono stati raccolti i dati**: Krasnoyarsk Interdistrict Clinical Hospital №20 intitolato a I. S. Berzon (Russia) 
